@@ -1,0 +1,109 @@
+<ActionBar title="" class="header">
+        <Label class="protocol-action-bar-content" textWrap="true" text="{{protocolObj.protocolNo}}"></Label>
+    <ActionItem text="Home" [nsRouterLink]="['/']" height="100%" width="100%" clearHistory="true" style="color:white"  ios.position="right" android.position="right">
+    </ActionItem>
+</ActionBar>
+<ActivityIndicator [busy]="isBusy" width="80" height="80"></ActivityIndicator>
+<GridLayout rows="*,40" *ngIf="!isBusy">
+        <StackLayout row="0" class="m-15">
+            <ScrollView id="protocolScroller" height="{{(screenHeight-100)+'px'}}" (scroll)="onScroll($event)">
+                <StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.sponsorProtocolNo != null" #topStack>
+                        <Label class="title" style="color:black" text="Sponsor Protocol No:"></Label>
+                        <Label class="protocol-detail" text="{{protocolObj.sponsorProtocolNo}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.principalInvestigator != null">
+                        <Label class="title" text="Principal Investigator:"></Label>
+                        <Label class="protocol-detail" textWrap="true"  text="{{protocolObj.principalInvestigator}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.phase != null">
+                        <Label class="title" text="Phase:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.phase}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.phase == null && clinicalTrialObj.phase != null">
+                        <Label class="title" text="Phase:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{clinicalTrialObj.phase}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.ageGroup != null">
+                        <Label class="title" text="Age Group:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.ageGroup}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="clinicalTrialObj.minAge != null || clinicalTrialObj.maxAge!=null">
+                        <Label class="title" text="Age Range:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{clinicalTrialObj.minAge}} - {{clinicalTrialObj.maxAge}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="clinicalTrialObj.gender != null">
+                        <Label class="title" text="Gender:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{clinicalTrialObj.gender}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.scope != null">
+                        <Label class="title" text="Scope:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.scope}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.studyTitle != null">
+                        <Label class="title" text="Study Title:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.studyTitle}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.objective != null">
+                        <Label class="title" text="Objective:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.objective}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.objective == null && clinicalTrialObj.objective!=null">
+                        <Label class="title" text="Objective:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{clinicalTrialObj.objective}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.description != null">
+                        <Label class="title" text="Description:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.description}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.description == null && clinicalTrialObj.description!=null">
+                        <Label class="title" text="Description:"></Label>
+                        <HtmlView html="<font color='black'>{{clinicalTrialObj.description}}</font>" color="#000"></HtmlView>
+                        <!-- <Label class="protocol-detail" textWrap="true" text="{{clinicalTrialObj.description}}"></Label> -->
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.treatment != null">
+                        <Label class="title" text="Treatment:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.treatment}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.treatment == null && clinicalTrialObj.studyArms !=null">
+                        <Label class="title" text="Treatment:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{clinicalTrialObj.studyArms}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.detailedEligibility != null">
+                        <Label class="title" text="Detailed Eligibility:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.detailedEligibility}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.detailedEligibility == null && clinicalTrialObj.detailedEligibility!=null">
+                        <Label class="title" text="Detailed Eligibility:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{clinicalTrialObj.detailedEligibility}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.applicableDiseaseSites != null">
+                        <Label class="title" text="Applicable Disease Sites:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.applicableDiseaseSites}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.participatingInstituition != null">
+                        <Label class="title" text="Participating Institutions:"></Label>
+                        <Label class="protocol-detail" textWrap="true" text="{{protocolObj.participatingInstituition}}"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.piName != null">
+                        <Label class="title" text="Contact Info:" ></Label>
+                        <StackLayout orientation="horizontal">
+                            <Label class="protocol-detail" textWrap="true" text=" {{protocolObj.piName}}"></Label>
+                        </StackLayout>
+                        <GridLayout rows="40" columns="40,40">
+                            <Label col="1" *ngIf="protocolObj.piPhone!=null && protocolObj.piPhone!= ' ' && protocolObj.piPhone!='undefined'" (tap)="call(protocolObj.piPhone)" class="anchor"  text="&#xe946;"></Label>
+                            <Label col="0" *ngIf="protocolObj.piEmail!=null && protocolObj.piEmail!= ' ' && protocolObj.piEmail!='undefined'" (tap)="mailTo(protocolObj.piEmail)" class="anchor" text="&#xe949;"></Label>
+                        </GridLayout>
+                    </StackLayout>
+                    <StackLayout orientation="vertical" *ngIf="protocolObj.nctId != null">
+                        <Label class="title" text="View More information at:"></Label>
+                        <Label (tap)="goToClinicalTrials(protocolObj.nctId)" class="anchor-link" textWrap="true"
+                                text="http://www.clinicaltrials.gov/ct2/show/{{protocolObj.nctId}}"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <StackLayout height="40" row="1" visibility="{{ showScroll ? 'visible' : 'collapsed' }}" backgroundColor="#f04c24">
+                <Button width="100%" height="40" style=" text-transform: none; background-color: #f04c24;border-color: transparent;border-width: 1;" class="footnote footnote-txt icon" (tap)="scrollToTop()" text="Back to top &#xea42;"></Button>
+        </StackLayout>
+</GridLayout>

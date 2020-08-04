@@ -1,0 +1,67 @@
+<ActionBar title="" class="header">
+    <StackLayout orientation="horizontal">
+        <Label class="protocol-action-bar-content" textWrap="true" verticalAlignment="center" text="Clinical Trial NaviGATOR"></Label>
+    </StackLayout>
+</ActionBar>
+
+<ActivityIndicator [busy]="isBusy" width="80" height="80"></ActivityIndicator>
+
+<GridLayout rows="*,40" *ngIf="!isMaintaining  && connectivity">
+  <ScrollView row="0">
+    <StackLayout orientation="vertical">
+           <Image height="{{ logoHeight }}" width="100%" class="logo" src="~/images/NaviGATOR-App-Logo.png"></Image>
+           <StackLayout orientation="horizontal" class="btn-primary-rounded" width="{{ (dWidth/100)*90 +'px' }}" minHeight="50">
+                       <label class="icon btn-text" (tap)="showDiseaseSite()" width="{{ (dWidth/100)*10 +'px' }}"
+                               text="&#xe987;" ></label>
+                       <label text="{{picked!=null? picked : 'Find trials by Disease Site'}}" width="{{ (dWidth/100)*75 +'px' }}"
+                               (tap)="showDiseaseSite()" textWrap="true" class="btn-text align-text center"></label>
+
+           </StackLayout>
+           <StackLayout orientation="horizontal"  class="btn-primary-rounded" width="{{ (dWidth/100)*90 +'px'}}" minHeight="50">
+                       <label (tap)="getHelpviaPhone()" class="icon btn-text" text="&#xe946;" width="{{ (dWidth/100)*10 +'px' }}"></label>
+                       <label class="btn-text align-text center" textWrap="true" text="Make a Trial referral by Phone"
+                               (tap)="getHelpviaPhone()" width="{{ (dWidth/100)*75 +'px' }}"></label>
+           </StackLayout>
+           <StackLayout orientation="horizontal"  class="btn-primary-rounded" width="{{ (dWidth/100)*90 +'px' }}" minHeight="50">
+                       <label (tap)="getHelpviaMail()" class="icon btn-text" text="&#xe949;" width="{{ (dWidth/100)*10 +'px' }}"></label>
+                       <label class="btn-text align-text center" textWrap="true" text="Get Trial Help via E-mail"
+                                 (tap)="getHelpviaMail()" width="{{ (dWidth/100)*75 +'px' }}"></label>
+           </StackLayout>
+    </StackLayout>
+  </ScrollView>
+  <StackLayout row="1">
+      <Label class="footnote footnote-txt text-center icon-awesome far fa-copyright" height="40" text="&copy; {{currentYear}} UF Office of Clinical Research"></Label>
+   </StackLayout>
+</GridLayout>
+
+<StackLayout height="100%" class="maintainence" *ngIf="!connectivity">
+    <Label class="maintainence-icon" text='&#xea08;'></Label>
+    <Label class="maintainence-text" text="Internet connection not found."></Label>
+    <Label class="maintainence-text" textWrap="true" text="Please make sure you are connected to the internet."></Label>
+    <Button class="maintainence-text underline" textWrap="true" text="Retry"  (tap)="ngOnInit()"></Button>
+</StackLayout>
+
+<StackLayout height="100%" class="maintainence" *ngIf="isMaintaining && connectivity">
+    <Label class="maintainence-icon" text='&#xe996;'></Label>
+    <Label class="maintainence-text" text="Sorry, we're down for maintenance."></Label>
+    <Label class="maintainence-text" text="We'll be back shortly"></Label>
+</StackLayout>
+
+<GridLayout [visibility]="showingLongListPicker ? 'visible' : 'collapsed'" rows="*, auto, *" columns="30, *, 30">
+        <GridLayout style="background-color: rgba(0,0,0,0.8);" rowSpan="3" colSpan="3" #longListPickerDimmer></GridLayout>
+        <StackLayout row="1" col="1" #longListPickerContainer style="background-color: white; border-radius: 10;">
+            <StackLayout>
+               <!-- <TextField hint="Edit text to filter..." [(ngModel)]="filterItem" (ngModelChange)="filterLongList($event)" style="font-size: 14;"></TextField> -->
+               <ListView [items]="nodes" class="list-group" height="{{ (dHeight-800) +'px' }}" (itemTap)="selectDiseaseSite($event)">
+                     <ng-template let-item="item" let-i="index" let-third="third">
+                        <StackLayout class="list-group-item">
+                            <Label text="{{item.title}}" textWrap="true" class="content"></Label>
+                        </StackLayout>
+                    </ng-template>
+                </ListView>
+            </StackLayout>
+            <GridLayout columns="auto, *, auto" paddingTop="5" paddingBottom="0">
+                <Button class="label-list" text="Cancel" (tap)="closeLongListPicker()"></Button>
+            </GridLayout>
+        </StackLayout>
+</GridLayout>
