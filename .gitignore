@@ -3,4 +3,4 @@ platforms/
 node_modules/
 hooks/
 .migration_backup/
-/app/shared/config.ts
+app/shared/config.ts
