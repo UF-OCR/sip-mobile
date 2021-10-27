@@ -1,3 +1,5 @@
+<GridLayout>
+
 <ActionBar title="" class="header">
         <Label class="protocol-action-bar-content" textWrap="true" text="{{protocolObj.protocolNo}}"></Label>
     <ActionItem text="Home" [nsRouterLink]="['/']" height="100%" width="100%" clearHistory="true" style="color:white"  ios.position="right" android.position="right">
@@ -106,4 +108,6 @@
         <StackLayout height="40" row="1" visibility="{{ showScroll ? 'visible' : 'collapsed' }}" backgroundColor="#f04c24">
                 <Button width="100%" height="40" style=" text-transform: none; background-color: #f04c24;border-color: transparent;border-width: 1;" class="footnote footnote-txt icon" (tap)="scrollToTop()" text="Back to top &#xea42;"></Button>
         </StackLayout>
+</GridLayout>
+
 </GridLayout>

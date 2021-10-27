@@ -3,12 +3,10 @@ import { ProtocolService } from "../../shared/protocol/protocol.service";
 import { Protocol } from "../../shared/protocol/protocol.model";
 import { ClinicalTrial } from "../../shared/protocol/clinicalTrial.model";
 import { Router, ActivatedRoute,NavigationEnd} from "@angular/router";
-import { Page } from "tns-core-modules/ui/page";
-import { ScrollView, ScrollEventData } from "tns-core-modules/ui/scroll-view";
+import { Page, ScrollEventData, ScrollView } from '@nativescript/core';
 import * as utils from "tns-core-modules/utils/utils";
 import * as TNSPhone from 'nativescript-phone';
-import * as platformModule from 'tns-core-modules/platform';
-import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
+import * as platformModule from '@nativescript/core/platform';
 import {AnalyticsService} from '../../services/analytics.service';
 
 @Component({
@@ -19,16 +17,16 @@ import {AnalyticsService} from '../../services/analytics.service';
     styleUrls: ["./protocol.css"]
 })
 export class ProtocolComponent implements OnInit{
-    private protocolObj = new Protocol();
+    protocolObj = new Protocol();
     private clinicalTrialObj = new ClinicalTrial();
     private showScroll: boolean;
     private page;
     private protocolScroller;
     private observable = require("tns-core-modules/data/observable");
     private pageData = new this.observable.Observable();
-    private screenHeight = (platformModule.screen.mainScreen.heightPixels)-100;
-    private screenHeightDIP = (platformModule.screen.mainScreen.heightDIPs)-100;
-    private isBusy = false;
+    private screenHeight = (platformModule.Screen.mainScreen.heightPixels)-100;
+    private screenHeightDIP = (platformModule.Screen.mainScreen.heightDIPs)-100;
+    isBusy = false;
 
     constructor(private protocolService: ProtocolService,private router: Router,
                 private activatedRoute: ActivatedRoute, private _AnalyticsService:AnalyticsService) {

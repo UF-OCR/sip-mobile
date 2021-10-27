@@ -1,12 +1,10 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptModule, NativeScriptFormsModule, NativeScriptHttpClientModule } from "@nativescript/angular";
 import { AppComponent } from "./app.component";
-import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { AppRoutingModule } from "./app.routing";
 import { HomeService } from "./shared/home/home.service";
 import { ListService } from "./shared/list/list.service";
 import { ProtocolService } from "./shared/protocol/protocol.service";
-import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { CustomReuseStrategy } from "./reuse-strategy"
 import { RouteReuseStrategy } from '@angular/router';
 import { HomeComponent } from "./pages/home/home.component";

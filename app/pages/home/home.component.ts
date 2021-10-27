@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output  } from "@angular/core";
 import { HomeService } from "../../shared/home/home.service";
 import {AnalyticsService} from '../../services/analytics.service';
-import { ListPicker } from "tns-core-modules/ui/list-picker";
 import { parse } from "romagny13-html-parser";
 import { Router, ActivatedRoute,NavigationExtras} from "@angular/router";
 import * as utils from "tns-core-modules/utils/utils";
 import * as TNSPhone from 'nativescript-phone';
-import * as platformModule from 'tns-core-modules/platform';
-import { ItemEventData } from "tns-core-modules/ui/list-view";
-import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
+import * as platformModule from '@nativescript/core/platform';
+import { ItemEventData } from '@nativescript/core';
 
 @Component({
     // selector: "home",
@@ -19,17 +17,17 @@ import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
 })
 
 export class HomeComponent implements OnInit {
-    private nodes: Array<any>;
+    nodes: Array<any>;
     private picked: string;
     private pickedId: string;
     private showAlertMessage: boolean;
-    private isMaintaining: boolean;
-    private connectivity: boolean;
-    private currentYear;
-    private dHeight = (platformModule.screen.mainScreen.heightPixels)-100;
-    private logoHeight= this.dHeight/4+"px";
-    private dWidth = platformModule.screen.mainScreen.widthPixels-100;
-    private showingLongListPicker: any = false;
+    isMaintaining: boolean;
+    connectivity: boolean;
+    currentYear;
+    dHeight = (platformModule.Screen.mainScreen.heightPixels)-100;
+    logoHeight= this.dHeight/4+"px";
+    dWidth = platformModule.Screen.mainScreen.widthPixels-100;
+    showingLongListPicker: any = false;
     isBusy: boolean = false;
 
     constructor(private router: Router, private homeService: HomeService, private  _AnalyticsService: AnalyticsService) {
@@ -41,8 +39,8 @@ export class HomeComponent implements OnInit {
         this.isBusy = true;
         this.checkInternetConnectivity();
         console.log("Device Width"+this.dWidth);
-        console.log("Device Height"+platformModule.screen.mainScreen.heightPixels);
-        this.logoHeight = (platformModule.screen.mainScreen.heightPixels)/4+"px";
+        console.log("Device Height"+platformModule.Screen.mainScreen.heightPixels);
+        this.logoHeight = (platformModule.Screen.mainScreen.heightPixels)/4+"px";
         this.currentYear = new Date().getFullYear();
         this.showAlertMessage = false;
         this.isMaintaining = false;

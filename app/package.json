@@ -1,9 +1,0 @@
-{
-  "main": "main.js",
-  "name": "org.nativescript.sipMobile",
-  "version": "1.2.0",
-  "android": {
-        "v8Flags": "--expose_gc",
-        "markingMode": "none"
-    }
-}

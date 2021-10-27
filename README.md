@@ -10,8 +10,8 @@ SIP Mobile App is a NativeScript-built iOS and Android app for displaying SIP Fl
 Sip Mobile app is built with the NativeScript CLI. Once you have the CLI installed, start by cloning the repo:
 
 ```
-$ git clone "https://gitlab.ahc.ufl.edu/UF-OCR/sip-mobile"
-$ cd sip-mobile
+$ git clone "https://gitlab.ahc.ufl.edu/hkoranne/sip-mobile-app"
+$ cd sip-mobile-app
 ```
 
 From there you can use the `run` command to run SipMobile on iOS:

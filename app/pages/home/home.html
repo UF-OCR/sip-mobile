@@ -1,3 +1,5 @@
+<GridLayout>
+
 <ActionBar title="" class="header">
     <StackLayout orientation="horizontal">
         <Label class="protocol-action-bar-content" textWrap="true" verticalAlignment="center" text="Clinical Trial NaviGATOR"></Label>
@@ -11,21 +13,21 @@
     <StackLayout orientation="vertical">
            <Image height="{{ logoHeight }}" width="100%" class="logo" src="~/images/NaviGATOR-App-Logo.png"></Image>
            <StackLayout orientation="horizontal" class="btn-primary-rounded" width="{{ (dWidth/100)*90 +'px' }}" minHeight="50">
-                       <label class="icon btn-text" (tap)="showDiseaseSite()" width="{{ (dWidth/100)*10 +'px' }}"
+                       <label class="icon btn-text" (tap)="showDiseaseSite()" width="{{ (dWidth/100)*11.5 +'px' }}"
                                text="&#xe987;" ></label>
-                       <label text="{{picked!=null? picked : 'Find trials by Disease Site'}}" width="{{ (dWidth/100)*75 +'px' }}"
+                       <label text="{{picked!=null? picked : 'Find trials by Disease Site'}}" width="{{ (dWidth/100)*70 +'px' }}"
                                (tap)="showDiseaseSite()" textWrap="true" class="btn-text align-text center"></label>
 
            </StackLayout>
            <StackLayout orientation="horizontal"  class="btn-primary-rounded" width="{{ (dWidth/100)*90 +'px'}}" minHeight="50">
-                       <label (tap)="getHelpviaPhone()" class="icon btn-text" text="&#xe946;" width="{{ (dWidth/100)*10 +'px' }}"></label>
+                       <label (tap)="getHelpviaPhone()" class="icon btn-text" text="&#xe946;" width="{{ (dWidth/100)*11.5 +'px' }}"></label>
                        <label class="btn-text align-text center" textWrap="true" text="Make a Trial referral by Phone"
-                               (tap)="getHelpviaPhone()" width="{{ (dWidth/100)*75 +'px' }}"></label>
+                               (tap)="getHelpviaPhone()" width="{{ (dWidth/100)*70 +'px' }}"></label>
            </StackLayout>
            <StackLayout orientation="horizontal"  class="btn-primary-rounded" width="{{ (dWidth/100)*90 +'px' }}" minHeight="50">
-                       <label (tap)="getHelpviaMail()" class="icon btn-text" text="&#xe949;" width="{{ (dWidth/100)*10 +'px' }}"></label>
+                       <label (tap)="getHelpviaMail()" class="icon btn-text" text="&#xe949;" width="{{ (dWidth/100)*11.5 +'px' }}"></label>
                        <label class="btn-text align-text center" textWrap="true" text="Get Trial Help via E-mail"
-                                 (tap)="getHelpviaMail()" width="{{ (dWidth/100)*75 +'px' }}"></label>
+                                 (tap)="getHelpviaMail()" width="{{ (dWidth/100)*70 +'px' }}"></label>
            </StackLayout>
     </StackLayout>
   </ScrollView>
@@ -64,4 +66,6 @@
                 <Button class="label-list" text="Cancel" (tap)="closeLongListPicker()"></Button>
             </GridLayout>
         </StackLayout>
+</GridLayout>
+
 </GridLayout>
