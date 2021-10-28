@@ -4,3 +4,4 @@ node_modules/
 hooks/
 .migration_backup/
 app/shared/config.ts
+package-lock.json
