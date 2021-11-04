@@ -38,5 +38,4 @@ $ ns run android
 
 ## Known Issues 
 - Navigation Bar Disappears on any iOS version greater than iOS 15
-- Dark Mode is not Optimized for iOS 
 - Back Button Animation Plays two Different Animations   
