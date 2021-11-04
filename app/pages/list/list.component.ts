@@ -2,11 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ListService } from "../../shared/list/list.service";
 import * as platformModule from '@nativescript/core/platform';
 import { Router, ActivatedRoute,NavigationExtras} from "@angular/router";
-import {AnalyticsService} from '../../services/analytics.service';
 
 @Component({
     selector: "list",
-    providers: [ListService, AnalyticsService],
+    providers: [ListService],
     moduleId: module.id,
     templateUrl: "./list.html",
     styleUrls: ["./list.css"]
@@ -23,12 +22,11 @@ export class ListComponent implements OnInit {
     isBusy=false;
 
     constructor(public listService: ListService,private router: Router,
-                private activatedRoute: ActivatedRoute,private _AnalyticsService:AnalyticsService) {
+                private activatedRoute: ActivatedRoute) {
         this.nodeList = ["Loading"];
     }
 
     public ngOnInit() {
-        this._AnalyticsService.initAnalytics();
         this.loaded=false;
         this.isBusy = true;
         this.chartId = this.listService.getChartId();
@@ -39,7 +37,6 @@ export class ListComponent implements OnInit {
                 this.chartName = this.listService.onGetDataName(result);
                 this.loaded=true;
                 this.isBusy = false;
-                this._AnalyticsService.logScreenView("Chart loaded"+this.chartName);
             }, (error) => {
                 this.listService.onGetDataError(error);
             });
@@ -54,7 +51,6 @@ export class ListComponent implements OnInit {
         let presenturl = this.router.url;
         let url = '';
         console.log("This is your index for sublist"+presenturl.indexOf("sublist"));
-        this._AnalyticsService.logEvent('onItemTap:'+this.picked,'clicked');
         if(presenturl.indexOf("sublist1")>=0){
             url = "/sublist2/"+this.pickedId;
         }else if(presenturl.indexOf("sublist2")>=0){
@@ -74,7 +70,6 @@ export class ListComponent implements OnInit {
     public onProtocolTap(args){
         let protocolNo = this.protocolList[args.index].protocolNo;
         let url = '/protocol/'+protocolNo;
-        this._AnalyticsService.logEvent('onProtocolTap:'+protocolNo,'clicked');
         this.router.navigateByUrl(url);
     }
 

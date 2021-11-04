@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output  } from "@angular/core";
 import { HomeService } from "../../shared/home/home.service";
-import {AnalyticsService} from '../../services/analytics.service';
 import { parse } from "romagny13-html-parser";
 import { Router, ActivatedRoute,NavigationExtras} from "@angular/router";
-import * as utils from "tns-core-modules/utils/utils";
+import * as utils from "@nativescript/core/utils/utils";
 import * as TNSPhone from 'nativescript-phone';
 import * as platformModule from '@nativescript/core/platform';
 import { ItemEventData } from '@nativescript/core';
@@ -11,14 +10,14 @@ import { ItemEventData } from '@nativescript/core';
 @Component({
     // selector: "home",
     moduleId: module.id,
-    providers: [HomeService, AnalyticsService],
+    providers: [HomeService],
     templateUrl: "./home.html",
     styleUrls: ["./home.css"]
 })
 
 export class HomeComponent implements OnInit {
     nodes: Array<any>;
-    private picked: string;
+    picked: string;
     private pickedId: string;
     private showAlertMessage: boolean;
     isMaintaining: boolean;
@@ -30,16 +29,14 @@ export class HomeComponent implements OnInit {
     showingLongListPicker: any = false;
     isBusy: boolean = false;
 
-    constructor(private router: Router, private homeService: HomeService, private  _AnalyticsService: AnalyticsService) {
+    constructor(private router: Router, private homeService: HomeService) {
     }
 
     public ngOnInit() {
-        this._AnalyticsService.initAnalytics();
-        this._AnalyticsService.logScreenView("home screen loaded");
         this.isBusy = true;
         this.checkInternetConnectivity();
-        console.log("Device Width"+this.dWidth);
-        console.log("Device Height"+platformModule.Screen.mainScreen.heightPixels);
+        console.log("Device Width: "+this.dWidth);
+        console.log("Device Height: "+platformModule.Screen.mainScreen.heightPixels);
         this.logoHeight = (platformModule.Screen.mainScreen.heightPixels)/4+"px";
         this.currentYear = new Date().getFullYear();
         this.showAlertMessage = false;
@@ -71,14 +68,12 @@ export class HomeComponent implements OnInit {
     }
 
     public getHelpviaMail(){
-        this._AnalyticsService.logEvent('getHelpviaMail','clicked');
         const url: string = "mailto:trials@cancer.ufl.edu?Subject=Clinical%20Trial%20NaviGATOR%20Message&Body=Please%20Do%20Not%20Include%20PHI%20in%20E-mail%20Correspondence";
         utils.openUrl(url);
     }
 
     public getHelpviaPhone(){
-        this._AnalyticsService.logEvent('getHelpviaPhone','clicked');
-        const platformModule = require("tns-core-modules/platform");
+        const platformModule = require("@nativescript/core/platform");
         if (platformModule.isAndroid) {
             const url: string = "tel:"+"+1-352-273-8675";
             console.log(url+"URL is valid: ");
@@ -90,7 +85,7 @@ export class HomeComponent implements OnInit {
     }
 
     public checkInternetConnectivity(){
-        const connectivityModule = require("tns-core-modules/connectivity");
+        const connectivityModule = require("@nativescript/core/connectivity");
         const connectionType = connectivityModule.getConnectionType();
 
         switch (connectionType) {
@@ -116,7 +111,6 @@ export class HomeComponent implements OnInit {
     }
 
     public showDiseaseSite(){
-        this._AnalyticsService.logEvent('DiseaseSite','clicked');
         this.isBusy = true;
         if(this.nodes == null){
           this.homeService.getData().subscribe((result) => {
@@ -142,7 +136,6 @@ export class HomeComponent implements OnInit {
         this.pickedId = this.nodes[args.index].value;
         this.picked = this.nodes[args.index].title;
         this.showingLongListPicker = false;
-        this._AnalyticsService.logEvent(this.picked,'selected');
         let url = "/list/"+this.pickedId;
         console.log(encodeURI(url));
         this.router.navigateByUrl(encodeURI(url));

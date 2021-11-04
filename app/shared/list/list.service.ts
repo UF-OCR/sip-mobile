@@ -69,7 +69,6 @@ export class ListService {
 
     public onGetDataSuccessNodes(res): any[] {
         let html = res.toLocaleString();
-        console.log(html);
         let nodes = parse(html);
         let tableContent = nodes[1].children;
         for (let entry of tableContent) {
@@ -85,7 +84,6 @@ export class ListService {
 
     public onGetDataSuccessProtocols(res): any[] {
         let html = res.toLocaleString();
-        console.log(html);
         let nodes = parse(html);
         let tableContent = nodes[1].children;
         for (let entry of tableContent) {
@@ -113,9 +111,9 @@ export class ListService {
         anchorString = anchorString.replace(",", ' ');
         let anchorIDs = anchorString.split(" ");
         let anchorID = anchorIDs[1].replace("'", "");
-        console.log("This is anchor:" + anchorID);
-        console.log("Content" + content);
-        console.log("pclSize" + pclSize);
+        console.log("This is anchor: " + anchorID);
+        console.log("Content " + content);
+        console.log("pclSize " + pclSize);
         this.nodes.push({id: anchorID, pclSize: pclSize, content: content});
     }
 
@@ -128,7 +126,7 @@ export class ListService {
             protcolTitle = protcolTitle.replace("<br>", "");
             protcolTitle = protcolTitle.replace("<br>", "");
             protcolTitle = protcolTitle.replace(/&amp;/g, '&');
-            console.log("Protocol Title:" + protcolTitle);
+            console.log("Protocol Title: " + protcolTitle);
             this.protocols.push({protocolNo: protcolNo, protocolStatus: protocolStatus, protcolTitle: protcolTitle});
         }
     }

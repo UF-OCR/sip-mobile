@@ -4,14 +4,13 @@ import { Protocol } from "../../shared/protocol/protocol.model";
 import { ClinicalTrial } from "../../shared/protocol/clinicalTrial.model";
 import { Router, ActivatedRoute,NavigationEnd} from "@angular/router";
 import { Page, ScrollEventData, ScrollView } from '@nativescript/core';
-import * as utils from "tns-core-modules/utils/utils";
+import * as utils from "@nativescript/core/utils/utils";
 import * as TNSPhone from 'nativescript-phone';
 import * as platformModule from '@nativescript/core/platform';
-import {AnalyticsService} from '../../services/analytics.service';
 
 @Component({
     selector: "protocol",
-    providers: [ProtocolService, AnalyticsService],
+    providers: [ProtocolService],
     moduleId: module.id,
     templateUrl: "./protocol.html",
     styleUrls: ["./protocol.css"]
@@ -22,19 +21,18 @@ export class ProtocolComponent implements OnInit{
     private showScroll: boolean;
     private page;
     private protocolScroller;
-    private observable = require("tns-core-modules/data/observable");
+    private observable = require("@nativescript/core/data/observable");
     private pageData = new this.observable.Observable();
     private screenHeight = (platformModule.Screen.mainScreen.heightPixels)-100;
     private screenHeightDIP = (platformModule.Screen.mainScreen.heightDIPs)-100;
     isBusy = false;
 
     constructor(private protocolService: ProtocolService,private router: Router,
-                private activatedRoute: ActivatedRoute, private _AnalyticsService:AnalyticsService) {
+                private activatedRoute: ActivatedRoute) {
     }
 
     public goToClinicalTrials(nctId){
         console.log("NctId"+nctId);
-        this._AnalyticsService.logEvent("goToClinicalTrials:"+nctId,"clicked");
         const url: string = "http://www.clinicaltrials.gov/ct2/show/"+nctId;
         const value:boolean = utils.isDataURI(url);
         console.log("URL is valid: "+value);
@@ -42,7 +40,6 @@ export class ProtocolComponent implements OnInit{
     }
 
     public ngOnInit() {
-        this._AnalyticsService.initAnalytics();
         this.isBusy = true;
         this.showScroll = false;
         this.protocolService.getData()
@@ -52,19 +49,16 @@ export class ProtocolComponent implements OnInit{
                     this.protocolService.getClinicalTrialData().subscribe((result) => {
                         this.clinicalTrialObj = this.protocolService.onGetClinicalDataSuccess(result);
                         this.isBusy = false;
-                          this._AnalyticsService.logScreenView("Protocol Screen and ctgov data loaded:"+this.protocolObj.protocolNo);
                     }, (error) => {
                         this.protocolService.onGetClinicalDataError(error)});
                 }else{
                 this.isBusy = false;
-                this._AnalyticsService.logScreenView("Protocol Screen loaded:"+this.protocolObj.protocolNo);
               }
             }, (error) => {
                 this.protocolService.onGetDataError(error)});
     }
 
     public mailTo(piEmail){
-        this._AnalyticsService.logEvent("piEmail: "+piEmail,"clicked")
         console.log("piEmail"+piEmail+"?Subject=Clinical%20Trial%20NaviGATOR%20inquiry%20–%20Protocol%20"+this.protocolObj.protocolNo);
         const url: string = "mailto:"+piEmail+"?Subject=Clinical%20Trial%20NaviGATOR%20inquiry%20Protocol%20"+this.protocolObj.protocolNo;
         console.log(url+"URL is valid: ");
@@ -72,11 +66,10 @@ export class ProtocolComponent implements OnInit{
     }
 
     public call(piPhone) {
-        this._AnalyticsService.logEvent("piPhone: "+piPhone,"clicked")
         let piPhoneFormat = piPhone.replace(" ext. ",",");
         piPhoneFormat = piPhoneFormat.replace(" ","");
         piPhoneFormat = piPhoneFormat.substring(0,2)+"-"+piPhoneFormat.substring(2,piPhoneFormat.length);
-         const platformModule = require("tns-core-modules/platform");
+         const platformModule = require("@nativescript/core/platform");
          if (platformModule.isAndroid) {
              let piPhoneFormatTemp = piPhoneFormat.replace(/-/g,"");
              piPhoneFormatTemp = piPhoneFormatTemp.replace("+","");
