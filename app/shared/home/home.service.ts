@@ -53,6 +53,7 @@ export class HomeService {
 
     public getData() {
         let headers = this.createRequestHeader();
+
         return this.http.get(this.serverUrl, {responseType: 'text' ,headers: headers})
             .pipe(map(res => res));
     }

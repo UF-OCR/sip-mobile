@@ -1,11 +1,12 @@
 # NativeScript SipMobile App
 SIP Mobile App is a NativeScript-built iOS and Android app for displaying SIP Flowcharts. 
 
-## Environment 
-- Nativescript Version: 7.2.1
+## Environment
+
+- Nativescript Version: 8.1.4
 - Xcode 12.4 (12D4e)
 - Android Studio 4.2.1
-- Node 12
+- Node 16
 
 ## Prerequisites
 - Sip Mobile App is built using Nativescript Angular Template.
@@ -23,19 +24,18 @@ $ cd sip-mobile-app
 From there you can use the `run` command to run SipMobile on iOS:
 
 ```
-$ ns run ios
+$ tns run ios
 ```
 
 And the same command to run SipMobile on Android:
 
 ```
-$ ns run android
+$ tns run android
 ```
 
 ## Configuration File - config.ts
 
 - Located under folder /app/shared/ folder includes OnCore flowchart URL's. These URLs needs to be updated for your organization.
 
-## Known Issues 
-- Navigation Bar Disappears on any iOS version greater than iOS 15
-- Back Button Animation Plays two Different Animations   
+## Known Issues
+- Back Button Animation Plays two Different Animations 

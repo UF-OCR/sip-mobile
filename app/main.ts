@@ -1,3 +1,7 @@
-import { platformNativeScriptDynamic } from "@nativescript/angular";
+import { platformNativeScript, runNativeScriptAngularApp } from '@nativescript/angular';
+import 'zone.js';
 import { AppModule } from "./app.module";
-platformNativeScriptDynamic().bootstrapModule(AppModule);
+
+runNativeScriptAngularApp({
+  appModuleBootstrap: () => platformNativeScript().bootstrapModule(AppModule),
+});
