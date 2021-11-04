@@ -3,7 +3,7 @@ import { ListComponent } from "./pages/list/list.component";
 import { ProtocolComponent } from "./pages/protocol/protocol.component";
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
-import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { NativeScriptRouterModule } from "@nativescript/angular";
 
 const routes = [
     { path: '', component: HomeComponent},

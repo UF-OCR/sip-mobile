@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ListService } from "../../shared/list/list.service";
-import * as platformModule from 'tns-core-modules/platform';
+import * as platformModule from '@nativescript/core/platform';
 import { Router, ActivatedRoute,NavigationExtras} from "@angular/router";
-import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
 import {AnalyticsService} from '../../services/analytics.service';
 
 @Component({
@@ -13,15 +12,15 @@ import {AnalyticsService} from '../../services/analytics.service';
     styleUrls: ["./list.css"]
 })
 export class ListComponent implements OnInit {
-    private chartName: string;
+    chartName: string;
     private chartId: string;
     private pickedId: string;
     private picked: string;
-    private nodeList: Array<any>;
-    private loaded: boolean;
-    private protocolList: Array<any>;
-    private dHeight = (platformModule.screen.mainScreen.heightPixels)-100;
-    private isBusy=false;
+    nodeList: Array<any>;
+    loaded: boolean;
+    protocolList: Array<any>;
+    dHeight = (platformModule.Screen.mainScreen.heightPixels)-100;
+    isBusy=false;
 
     constructor(public listService: ListService,private router: Router,
                 private activatedRoute: ActivatedRoute,private _AnalyticsService:AnalyticsService) {

@@ -60,8 +60,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 	 <key>NSCalendarsUsageDescription</key>
     <string>purpose for using analytics</string>
+  <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
 </dict>
 </plist>

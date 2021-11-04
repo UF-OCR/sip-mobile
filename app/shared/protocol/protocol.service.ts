@@ -5,8 +5,6 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {Protocol} from "../../shared/protocol/protocol.model";
 import {ClinicalTrial} from "../../shared/protocol/clinicalTrial.model";
 import {Config} from '../config';
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/do";
 import { map } from "rxjs/operators";
 import { Formatter } from "ctgov-ocr-formatter";
 
