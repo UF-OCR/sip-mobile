@@ -37,5 +37,23 @@ $ tns run android
 
 - Located under folder /app/shared/ folder includes OnCore flowchart URL's. These URLs needs to be updated for your organization.
 
+## Creating Framed Screenshots for Store Publication
+
+### Install Fastland and Imagemagick
+
+#### Mac with HomeBrew 
+```
+brew update && brew install fastlane
+brew install imagemagick
+```
+
+### Generating Screenshot 
+- Create a directory with unframed screenshots 
+- Open a terminal window and change into the directory with the unframed screenshots 
+- Run the following command:
+```
+fastlane frameit
+```
+
 ## Known Issues
 - Back Button Animation Plays two Different Animations 
